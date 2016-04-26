@@ -6,6 +6,17 @@
 
     var app = angular.module('pokedex', []);
 
+    app.controller('pokelistCtrl', function ($scope, $http) {
+        $scope.pokemons = [];
+        $http({
+            method: 'GET',
+            url: 'http://pokeapi.co/api/v2/pokemon?limit=811'
+        }).then(function success(response) {
+            $scope.pokemons = response.data.results;
+            console.log(response);
+        });
+    });
+
     app.directive('pokelist', function () {
         return {
             restrict: 'E',
