@@ -58,4 +58,61 @@ pokeprofil {
     float: right;
 
 }
+
+.type {
+    display: inline;
+}
+.bug {
+    color: #88960E;
+}
+.dark {
+    color: #3C2D23;
+}
+.dragon {
+    color: #4E3BA4;
+}
+.electric {
+    color: #E79302;
+}
+.fairy {
+    color: #E08EE0;
+}
+.fighting {
+    color: #602311;
+}
+.fire {
+    color: #C72100;
+}
+.flying {
+    color: #5D73D4;
+}
+.ghost {
+    color: #444491;
+}
+.grass {
+    color: #409F09;
+}
+.ground {
+    color: #AD8C32;
+}
+.ice {
+    color: #6DD3F5;
+}
+.normal {
+    color: #AAA291;
+}
+.poison {
+    color: #6B246E;
+}
+.psychic {
+    color: #DC3165;
+}
+.rock {
+    color: #9E863D;
+}
+.steel {
+    color: #8E8E9F;
+}
+.water {
+    color: #0B66C1;
 }
