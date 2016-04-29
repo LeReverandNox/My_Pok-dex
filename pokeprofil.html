@@ -4,6 +4,12 @@
     <p>Description : {{poke.desc}}</p>
     <p>Heigth : {{poke.profil.height / 10}} m</p>
     <p>Weight : {{poke.profil.weight / 10}} kg
+        <div class="poke-types">
+        Type :
+            <div class='type' ng-repeat='type in poke.profil.types' ng-class='type.type.name'>{{type.type.name}}</div>
+        </div>
+    </p>
+    <ul>
 
     <p><img src="{{poke.profil.sprites['front_default']}}"></p>
 </div>
