@@ -1,5 +1,5 @@
 <ul ng-init='pkCtrl.getPokeList()'>
     <li ng-repeat='pokemon in pokemons'>
-        {{pokemon.name}}
+        <span class='pokemon-id'>No‎. {{pokemon.id}}</span> - <span ng-click='pkCtrl.showProfil(pokemon.name)'>{{pokemon.name | capitalize}}</span>
     </li>
 </ul>
