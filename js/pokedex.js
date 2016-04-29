@@ -13,6 +13,8 @@
         // this.api = 'http://pokeapi.co/api/v2/';
 
         this.pokemons = [];
+        $scope.poke = {};
+
         this.getPokeList = function () {
             $scope.isLoading = true;
             $http({
@@ -70,6 +72,17 @@
                 self.getSpecie(response.data.species.url);
             });
         };
+        this.getSpecie = function (specieURL) {
+            $http({
+                method: 'GET',
+                url: specieURL
+            }).then(function success(response) {
+                console.log(response.data);
+                $scope.poke.desc = response.data.flavor_text_entries[1].flavor_text;
+                self.getEvolutionChain(response.data.evolution_chain.url);
+            });
+        };
+
     });
 
     app.directive('pokelist', function () {
