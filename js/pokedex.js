@@ -60,7 +60,16 @@
             this.getProfil(pokeName);
         };
 
+        this.getProfil = function (pokeName) {
+            $http({
                 method: 'GET',
+                url: self.api + 'pokemon/' + pokeName
+            }).then(function success(response) {
+                console.log(response.data);
+                $scope.poke.profil = response.data;
+                self.getSpecie(response.data.species.url);
+            });
+        };
     });
 
     app.directive('pokelist', function () {
