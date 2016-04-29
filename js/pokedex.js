@@ -54,6 +54,12 @@
             $scope.pokemons = pokeResults;
         };
 
+        this.showProfil = function (pokeName) {
+            $scope.isLoading = true;
+            $scope.poke.show = false;
+            this.getProfil(pokeName);
+        };
+
                 method: 'GET',
     });
 
