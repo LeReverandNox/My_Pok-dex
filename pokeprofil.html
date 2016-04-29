@@ -19,5 +19,10 @@
         <li ng-repeat='move in poke.profil.moves'>{{move.move.name}}</li>
     </ul>
 
+    <ul>
+        <li>Abilities :</li>
+        <li ng-repeat='ability in poke.profil.abilities'>{{ability.ability.name}}</li>
+    </ul>
+
     <p><img src="{{poke.profil.sprites['front_default']}}"></p>
 </div>
