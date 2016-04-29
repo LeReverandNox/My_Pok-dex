@@ -6,15 +6,24 @@
 
     var app = angular.module('pokedex', []);
 
-    app.controller('pokelistCtrl', function ($scope, $http) {
-        $scope.pokemons = [];
-        $http({
-            method: 'GET',
-            url: 'http://pokeapi.co/api/v2/pokemon?limit=811'
-        }).then(function success(response) {
-            $scope.pokemons = response.data.results;
-            console.log(response);
-        });
+    app.controller('pokedexCtrl', function ($location, $q, $scope, $http) {
+
+        var self = this;
+        this.api = 'http://localhost:8000/api/v2/';
+        // this.api = 'http://pokeapi.co/api/v2/';
+
+        this.pokemons = [];
+        this.getPokeList = function () {
+            $scope.isLoading = true;
+            $http({
+                method: 'GET',
+                url: this.api + 'pokemon?limit=718'
+            }).then(function success(response) {
+                self.pokemons = response.data.results;
+                $scope.isLoading = false;
+            });
+        };
+                method: 'GET',
     });
 
     app.directive('pokelist', function () {
