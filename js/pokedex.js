@@ -20,9 +20,25 @@
                 url: this.api + 'pokemon?limit=718'
             }).then(function success(response) {
                 self.pokemons = response.data.results;
+
+                $scope.pokemons = self.addIds(self.pokemons);
+
                 $scope.isLoading = false;
             });
         };
+
+        this.addIds = function (pokemons) {
+            var i = 0;
+            var id;
+
+            for (i = 0; i < pokemons.length; i += 1) {
+
+                id = i + 1;
+                pokemons[i].id = id.toString();
+            }
+            return pokemons;
+        };
+
                 method: 'GET',
     });
 
