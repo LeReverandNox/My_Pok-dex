@@ -39,6 +39,21 @@
             return pokemons;
         };
 
+        this.searchInList = function () {
+            var str = $scope.pokeSearch;
+            var pokeResults = [];
+
+            this.pokemons.forEach(function (value) {
+                $scope.isLoading = true;
+                if (value.name.substr(0, str.length) === str || value.id.substr(0, str.length) === str) {
+                    pokeResults.push(value);
+                }
+            });
+
+            $scope.isLoading = false;
+            $scope.pokemons = pokeResults;
+        };
+
                 method: 'GET',
     });
 
