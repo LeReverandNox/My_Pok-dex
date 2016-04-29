@@ -1,4 +1,4 @@
-<ul ng-controller='pokelistCtrl'>
+<ul ng-init='pkCtrl.getPokeList()'>
     <li ng-repeat='pokemon in pokemons'>
         {{pokemon.name}}
     </li>
