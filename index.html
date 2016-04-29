@@ -12,6 +12,10 @@
 
         <div ng-show='isLoading'>LOADER</div>
 
+        <form class='poke-search'>
+            <input type=text placeholder="Le nom ou l'ID d'un Pokémon" autofocus ng-model='pokeSearch' ng-change='pkCtrl.searchInList()'/>
+        </form>
+
     </div>
 
     <script type="text/javascript" src='js/jquery-1.12.3.min.js'></script>
