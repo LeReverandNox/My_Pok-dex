@@ -23,4 +23,11 @@
             templateUrl: 'pokelist.html'
         };
     });
+
+    app.directive('pokeprofil', function () {
+        return {
+            retrict: 'E',
+            templateUrl: 'pokeprofil.html'
+        };
+    });
 }());
