@@ -83,6 +83,62 @@
             });
         };
 
+        this.getEvolutionChain = function (evChainURL) {
+            $http({
+                method: 'GET',
+                url: evChainURL
+            }).then(function success(response) {
+                var allEvolutions = [];
+                var evolutions = {};
+
+                self.findEvolutions(response.data.chain, allEvolutions);
+                self.findPrevNext($scope.poke.profil.name, allEvolutions, evolutions);
+
+                var promises = [];
+                $.each(evolutions, function(index, evolution) {
+                    promises.push($http({
+                        method: 'GET',
+                        url: evolution.url
+                    }).then(function success (response) {
+                        evolution.sprite = response.data.sprites['front_default']
+                    }));
+                });
+
+                $q.all(promises).then(function success(response) {
+                    $scope.poke.previous = evolutions.previous;
+                    $scope.poke.next = evolutions.next;
+                    $scope.isLoading = false;
+                    $scope.poke.show = true;
+                });
+            });
+        };
+
+        this.findEvolutions = function (chain, allEvolutions) {
+            chain.species.url = chain.species.url.replace('-species', '');
+            chain.species.id = chain.species.url.match(/\/([0-9]+)\//)[1];
+
+            allEvolutions.push(chain.species);
+
+            if (chain.hasOwnProperty('evolves_to')) {
+                if (chain.evolves_to.length > 0) {
+                    self.findEvolutions(chain.evolves_to[0], allEvolutions);
+                }
+            }
+        };
+
+        this.findPrevNext = function (name, allEvolutions, evolutions) {
+            allEvolutions.forEach(function (evolution, index) {
+                if (evolution.name === name) {
+                    if (allEvolutions[index - 1] !== undefined) {
+                        evolutions.previous = allEvolutions[index - 1];
+                    }
+                    if (allEvolutions[index + 1] !== undefined) {
+                        evolutions.next = allEvolutions[index + 1];
+                    }
+                }
+            });
+        };
+
     });
 
     app.directive('pokelist', function () {
