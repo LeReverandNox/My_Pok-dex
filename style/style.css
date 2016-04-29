@@ -45,4 +45,17 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+/* My_Pokedex */
+pokelist {
+    border: 1px solid black;
+    float: left;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+pokeprofil {
+    border: 1px solid red;
+    float: right;
+
+}
 }
