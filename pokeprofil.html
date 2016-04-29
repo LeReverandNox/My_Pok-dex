@@ -14,5 +14,10 @@
         <li ng-repeat="stat in poke.profil.stats | orderBy:'id':false">{{stat.stat.name}} : {{stat.base_stat}}</li>
     </ul>
 
+    <ul>
+        <li>Moves :</li>
+        <li ng-repeat='move in poke.profil.moves'>{{move.move.name}}</li>
+    </ul>
+
     <p><img src="{{poke.profil.sprites['front_default']}}"></p>
 </div>
