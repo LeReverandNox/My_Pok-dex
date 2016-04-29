@@ -57,6 +57,7 @@
         };
 
         this.showProfil = function (pokeName) {
+            $location.url('/?pokemon=' + pokeName);
             $scope.isLoading = true;
             $scope.poke.show = false;
             this.getProfil(pokeName);
@@ -139,6 +140,9 @@
             });
         };
 
+        if ($location.search().pokemon) {
+            this.showProfil($location.search().pokemon);
+        }
     });
 
     app.directive('pokelist', function () {
