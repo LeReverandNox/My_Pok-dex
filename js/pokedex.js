@@ -8,9 +8,10 @@
 
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/pokedex', {
+            .when('/pokedex/:name?', {
                 templateUrl: 'pokedex.html',
-                controller: 'pokedexCtrl'
+                controller: 'pokedexCtrl',
+                controllerAs: 'pkCtrl',
             })
             .when('/team', {
                 templateUrl: 'team.html',
@@ -21,7 +22,7 @@
             });
     }]);
 
-    app.controller('pokedexCtrl', function ($location, $q, $scope, $http) {
+    app.controller('pokedexCtrl', function ($location, $q, $scope, $http, $routeParams) {
 
         var self = this;
         this.api = 'http://localhost:8000/api/v2/';
@@ -71,8 +72,11 @@
             $scope.pokemons = pokeResults;
         };
 
+        this.goToProfil = function (pokeName) {
+            $location.url('/pokedex/' + pokeName);
+        };
+
         this.showProfil = function (pokeName) {
-            $location.url('/?pokemon=' + pokeName);
             $scope.isLoading = true;
             $scope.poke.show = false;
             this.getProfil(pokeName);
@@ -155,8 +159,8 @@
             });
         };
 
-        if ($location.search().pokemon) {
-            this.showProfil($location.search().pokemon);
+        if ($routeParams.name) {
+            this.showProfil($routeParams.name);
         }
     });
 
