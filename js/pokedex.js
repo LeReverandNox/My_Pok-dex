@@ -229,6 +229,15 @@
             });
         };
 
+        this.isPkmnFavorite = function (name) {
+            if (teamService.isPkmnFavorite(name)) {
+                return true;
+            }
+        };
+        this.SupOrAddToTeam = function (name) {
+            teamService.SupOrAddToTeam(name, $scope.poke);
+        };
+
         if ($routeParams.name) {
             this.showProfil($routeParams.name);
         }
