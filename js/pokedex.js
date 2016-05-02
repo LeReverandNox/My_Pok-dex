@@ -29,7 +29,8 @@
             })
             .when('/team', {
                 templateUrl: 'team.html',
-                controller: 'teamCtrl'
+                controller: 'teamCtrl',
+                controllerAs: 'tCtrl'
             })
             .otherwise({
                 redirectTo: '/pokedex'
