@@ -37,7 +37,62 @@
             });
     }]);
 
-    app.controller('pokedexCtrl', function ($location, $q, $scope, $http, $routeParams) {
+    app.factory('teamService', function () {
+        var teamService = {};
+
+        teamService.team;
+
+        teamService.loadTeam = function () {
+            this.team = localStorage.getItem('MyPokedex_team') !== null
+                ? JSON.parse(localStorage.getItem('MyPokedex_team'))
+                : [];
+
+            return this.team;
+        };
+
+        teamService.saveTeam = function () {
+            localStorage.setItem('MyPokedex_team', JSON.stringify(this.team));
+        };
+
+        teamService.isPkmnFavorite = function (name) {
+            var match = this.team.filter(function (object) {
+                return object.name === name;
+            });
+            if (match.length > 0) {
+                return match[0];
+            } else {
+                return false;
+            }
+        };
+
+        teamService.SupOrAddToTeam = function (name, poke) {
+            var pkmnToDelete = this.isPkmnFavorite(name);
+            if (pkmnToDelete) {
+                var pos = this.team.indexOf(pkmnToDelete);
+                this.team.splice(pos, 1);
+            } else {
+                if (!this.isTeamFull()) {
+                    this.team.push({
+                        name : name,
+                        datas : poke
+                    });
+                }
+            }
+            this.saveTeam();
+        };
+
+        teamService.isTeamFull = function () {
+            if (this.team.length >= 6) {
+                alert('Vous ne pouvez pas avoir plus de 6 pokémons dans votre équipe');
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        teamService.loadTeam();
+        return teamService;
+    });
 
         var self = this;
         this.api = 'http://localhost:8000/api/v2/';
