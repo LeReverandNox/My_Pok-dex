@@ -1,5 +1,5 @@
 /*jslint browser this */
-/*global angular $ */
+/*global angular $ alert */
 
 (function () {
     'use strict';
@@ -72,10 +72,6 @@
             $scope.pokemons = pokeResults;
         };
 
-        this.goToProfil = function (pokeName) {
-            $location.url('/pokedex/' + pokeName);
-        };
-
         this.showProfil = function (pokeName) {
             $scope.isLoading = true;
             $scope.poke.show = false;
@@ -90,6 +86,8 @@
                 console.log(response.data);
                 $scope.poke.profil = response.data;
                 self.getSpecie(response.data.species.url);
+            }, function error(response) {
+                alert('Le Pokémon demandé n\'éxiste pas !');
             });
         };
         this.getSpecie = function (specieURL) {
