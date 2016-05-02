@@ -89,6 +89,7 @@
 
         this.showProfil = function (pokeName) {
             $location.path('/pokedex/' + pokeName, false);
+            $scope.poke = {};
             $scope.isLoading = true;
             $scope.poke.show = false;
             this.getProfil(pokeName);
