@@ -8,6 +8,21 @@
     var app = angular.module('pokedex', []);
     var app = angular.module('pokedex', ['ngRoute']);
 
+    app.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/pokedex', {
+                templateUrl: 'pokedex.html',
+                controller: 'pokedexCtrl'
+            })
+            .when('/team', {
+                templateUrl: 'team.html',
+                controller: 'teamCtrl'
+            })
+            .otherwise({
+                redirectTo: '/pokedex'
+            });
+    }]);
+
     app.controller('pokedexCtrl', function ($location, $q, $scope, $http) {
 
         var self = this;
