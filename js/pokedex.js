@@ -6,12 +6,26 @@
 
     var app = angular.module('pokedex', ['ngRoute']);
 
+    app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+        var original = $location.path;
+        $location.path = function (path, reload) {
+            if (reload === false) {
+                var lastRoute = $route.current;
+                var un = $rootScope.$on('$locationChangeSuccess', function () {
+                    $route.current = lastRoute;
+                    un();
+                });
+            }
+            return original.apply($location, [path]);
+        };
+    }]);
+
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/pokedex/:name?', {
                 templateUrl: 'pokedex.html',
                 controller: 'pokedexCtrl',
-                controllerAs: 'pkCtrl',
+                controllerAs: 'pkCtrl'
             })
             .when('/team', {
                 templateUrl: 'team.html',
@@ -73,6 +87,7 @@
         };
 
         this.showProfil = function (pokeName) {
+            $location.path('/pokedex/' + pokeName, false);
             $scope.isLoading = true;
             $scope.poke.show = false;
             this.getProfil(pokeName);
