@@ -1,5 +1,5 @@
 <div class="team-body">
-    <div class="poke-searchnlist">
+    <div class="poke-teamlist">
     <p>My Team</p>
     <ul>
         <li ng-repeat="pokemon in team | orderBy:'datas.profil.id'" ng-click='tCtrl.displayOne(pokemon.name)'>#{{pokemon.datas.profil.id | leftpad:3}} - {{pokemon.name | capitalize}}</li>
