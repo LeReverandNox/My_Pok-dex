@@ -1,11 +1,9 @@
 /*jslint browser this */
-/*global angular */
 /*global angular $ */
 
 (function () {
     'use strict';
 
-    var app = angular.module('pokedex', []);
     var app = angular.module('pokedex', ['ngRoute']);
 
     app.config(['$routeProvider', function ($routeProvider) {
@@ -113,19 +111,15 @@
                 self.findPrevNext($scope.poke.profil.name, allEvolutions, evolutions);
 
                 var promises = [];
-                $.each(evolutions, function(index, evolution) {
                 $.each(evolutions, function (index, evolution) {
                     promises.push($http({
                         method: 'GET',
                         url: evolution.url
-                    }).then(function success (response) {
-                        evolution.sprite = response.data.sprites['front_default']
                     }).then(function success(response) {
                         evolution.sprite = response.data.sprites['front_default'];
                     }));
                 });
 
-                $q.all(promises).then(function success(response) {
                 $q.all(promises).then(function success() {
                     $scope.poke.previous = evolutions.previous;
                     $scope.poke.next = evolutions.next;
