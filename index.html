@@ -13,23 +13,9 @@
                 <h1>My_Pokédex !</h1>
             </header>
         </div>
-        <div class="poke-body" ng-controller='pokedexCtrl as pkCtrl'>
 
-            <div class='poke-loader' ng-show='isLoading'>LOADER</div>
         <div ng-view></div>
 
-            <div class='poke-content'>
-                <div class="poke-searchnlist">
-                    <form class='poke-search'>
-                        <input type=text placeholder="Le nom ou l'ID d'un Pokémon" autofocus ng-model='pokeSearch' ng-change='pkCtrl.searchInList()'/>
-                    </form>
-
-                    <pokelist></pokelist>
-                </div>
-
-                <pokeprofil></pokeprofil>
-            </div>
-        </div>
     </div>
 
     <script type="text/javascript" src='js/jquery-1.12.3.min.js'></script>
