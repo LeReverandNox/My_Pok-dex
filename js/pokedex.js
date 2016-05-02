@@ -40,7 +40,7 @@
     app.factory('teamService', function () {
         var teamService = {};
 
-        teamService.team;
+        teamService.team = [];
 
         teamService.loadTeam = function () {
             this.team = localStorage.getItem('MyPokedex_team') !== null
@@ -73,8 +73,8 @@
             } else {
                 if (!this.isTeamFull()) {
                     this.team.push({
-                        name : name,
-                        datas : poke
+                        name: name,
+                        datas: poke
                     });
                 }
             }
@@ -95,7 +95,6 @@
     });
 
     app.controller('teamCtrl', function ($scope, teamService) {
-        var self = this;
         $scope.team = teamService.loadTeam();
 
         this.displayOne = function (name) {
@@ -178,11 +177,15 @@
                 method: 'GET',
                 url: self.api + 'pokemon/' + pokeName
             }).then(function success(response) {
-                console.log(response.data);
+                // console.log(response.data);
                 $scope.poke.profil = response.data;
                 self.getSpecie(response.data.species.url);
             }, function error(response) {
-                alert('Le Pokémon demandé n\'éxiste pas !');
+                if (response.status === -1) {
+                    alert('Veuillez vérifier votre connexion internet !');
+                } else {
+                    alert('Le Pokémon demandé n\'existe pas !');
+                }
             });
         };
         this.getSpecie = function (specieURL) {
@@ -190,7 +193,7 @@
                 method: 'GET',
                 url: specieURL
             }).then(function success(response) {
-                console.log(response.data);
+                // console.log(response.data);
                 $scope.poke.desc = response.data.flavor_text_entries[1].flavor_text;
                 self.getEvolutionChain(response.data.evolution_chain.url);
             });
@@ -209,15 +212,17 @@
 
                 var promises = [];
                 $.each(evolutions, function (index, evolution) {
+                    // Bout de code parfaitement inutile, mais sinon JSLint aime pas la variabie unused xD
+                    index += index - index;
                     promises.push($http({
                         method: 'GET',
                         url: evolution.url
-                    }).then(function success(response) {
-                        evolution.sprite = response.data.sprites['front_default'];
+                    }).then(function success1(response) {
+                        evolution.sprite = response.data.sprites.front_default;
                     }));
                 });
 
-                $q.all(promises).then(function success() {
+                $q.all(promises).then(function success2() {
                     $scope.poke.previous = evolutions.previous;
                     $scope.poke.next = evolutions.next;
                     $scope.isLoading = false;
