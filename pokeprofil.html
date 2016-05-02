@@ -45,12 +45,12 @@
         <div class="poke-evo-flex">
             <div class='poke-evolve' ng-show='poke.previous'>
                 <p>Previous</p>
-                <p ng-click='pkCtrl.showProfil(poke.previous.name)'>#{{poke.previous.id | leftpad:3}} {{poke.previous.name | capitalize}}</p>
+                <p ng-click='pkCtrl.goToProfil(poke.previous.name)'>#{{poke.previous.id | leftpad:3}} {{poke.previous.name | capitalize}}</p>
                 <p><img src="{{poke.previous.sprite}}"></p>
             </div>
             <div class='poke-evolve' ng-show='poke.next'>
                 <p>Next</p>
-                <p ng-click='pkCtrl.showProfil(poke.next.name)'>#{{poke.next.id | leftpad:3}} {{poke.next.name | capitalize}}</p>
+                <p ng-click='pkCtrl.goToProfil(poke.next.name)'>#{{poke.next.id | leftpad:3}} {{poke.next.name | capitalize}}</p>
                 <p><img src="{{poke.next.sprite}}"></p>
             </div>
         </div>
