@@ -1,39 +1,58 @@
 <div ng-show='poke.show' class='pokeprofil'>
-    <p>No : {{poke.profil.id}}</p>
-    <p>Name : {{poke.profil.name}}</p>
-    <p>Description : {{poke.desc}}</p>
-    <p>Heigth : {{poke.profil.height / 10}} m</p>
-    <p>Weight : {{poke.profil.weight / 10}} kg
-        <div class="poke-types">
-        Type :
-            <div class='type' ng-repeat='type in poke.profil.types' ng-class='type.type.name'>{{type.type.name}}</div>
+<div class="poke-header">
+    <h2><span class="poke-id">#{{poke.profil.id | leftpad:3}}</span> <span class="poke-name">{{poke.profil.name | capitalize}}</span></h2>
+</div>
+    <div class="poke-sprite">
+        <img src="{{poke.profil.sprites['front_default']}}">
+    </div>
+
+    <div class="poke-infos">
+        <p>Description : {{poke.desc}}</p>
+        <p>Heigth : {{poke.profil.height / 10}} m</p>
+        <p>Weight : {{poke.profil.weight / 10}} kg
+    </div>
+
+    <div class="poke-types">
+    Type :
+        <div class='type' ng-repeat='type in poke.profil.types' ng-class='type.type.name'>{{type.type.name}}</div>
+    </div>
+
+    <div class="poke-ul-flex">
+        <div class="poke-ul poke-stats">
+            <p>Statistics</p>
+            <ul>
+                <li ng-repeat="stat in poke.profil.stats | orderBy:'id':false"><span class="poke-stat">{{stat.stat.name | capitalize}}</span> : {{stat.base_stat}}</li>
+            </ul>
         </div>
-    </p>
-    <ul>
-        <li>Stats :</li>
-        <li ng-repeat="stat in poke.profil.stats | orderBy:'id':false">{{stat.stat.name}} : {{stat.base_stat}}</li>
-    </ul>
 
-    <ul>
-        <li>Moves :</li>
-        <li ng-repeat='move in poke.profil.moves'>{{move.move.name}}</li>
-    </ul>
+        <div class="poke-ul poke-moves">
+            <p>Moves</p>
+            <ul>
+                <li ng-repeat='move in poke.profil.moves'>{{move.move.name}}</li>
+            </ul>
+        </div>
 
-    <ul>
-        <li>Abilities :</li>
-        <li ng-repeat='ability in poke.profil.abilities'>{{ability.ability.name}}</li>
-    </ul>
-
-    <div ng-show='poke.previous'>
-        <p ng-click='pkCtrl.showProfil(poke.previous.name)'>{{poke.previous.name}}</p>
-        <p>No : {{poke.previous.id}}</p>
-        <p><img src="{{poke.previous.sprite}}"></p>
+        <div class="poke-ul poke-abilities">
+            <p>Abilities</p>
+            <ul>
+                <li ng-repeat='ability in poke.profil.abilities'>{{ability.ability.name}}</li>
+            </ul>
+        </div>
     </div>
-    <div ng-show='poke.next'>
-        <p>Evolution : </p>
-        <p ng-click='pkCtrl.showProfil(poke.next.name)'>{{poke.next.name}}</p>
-        <p>No : {{poke.next.id}}</p>
-        <p><img src="{{poke.next.sprite}}"></p>
+
+    <div class="poke-evolutions">
+    <h3>Evolutions</h3>
+        <div class="poke-evo-flex">
+            <div class='poke-evolve' ng-show='poke.previous'>
+                <p>Previous</p>
+                <p ng-click='pkCtrl.showProfil(poke.previous.name)'>#{{poke.previous.id | leftpad:3}} {{poke.previous.name | capitalize}}</p>
+                <p><img src="{{poke.previous.sprite}}"></p>
+            </div>
+            <div class='poke-evolve' ng-show='poke.next'>
+                <p>Next</p>
+                <p ng-click='pkCtrl.showProfil(poke.next.name)'>#{{poke.next.id | leftpad:3}} {{poke.next.name | capitalize}}</p>
+                <p><img src="{{poke.next.sprite}}"></p>
+            </div>
+        </div>
     </div>
-    <p><img src="{{poke.profil.sprites['front_default']}}"></p>
 </div>
