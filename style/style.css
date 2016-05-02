@@ -3,7 +3,7 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+/*html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -22,9 +22,9 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-}
+}*/
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
+/*article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -45,74 +45,152 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}*/
+
 /* My_Pokedex */
+
+ol, ul {
+    list-style: none;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.main-header {
+    text-align: center;
+}
+
+.poke-loader {
+    text-align: center;
+}
+
+.poke-searchnlist {
+    min-width: 450px;
+}
+.poke-stat {
+    font-weight: bold;
+}
+.poke-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 pokelist {
-    border: 1px solid black;
-    float: left;
-    height: 500px;
+    display: block;
+    max-height: 700px;
     overflow-y: scroll;
 }
 
 pokeprofil {
-    border: 1px solid red;
-    float: right;
+    text-align: center;
+}
 
+pokeprofil {
+    flex: 70%;
+    display: flex;
+    justify-content: center;
+}
+.poke-searchnlist  {
+    flex-basis: 30%;
+}
+
+.poke-search {
+    margin-bottom: 25px;
+}
+.poke-search input {
+    width: 100%;
+}
+
+.poke-header {
+    text-align: center;
+}
+.poke-sprite {
+    margin: 0 auto;
+    width: 96px;
+}
+
+.poke-ul-flex, .poke-evo-flex {
+    display: flex;
+}
+.poke-ul {
+    flex: 1;
+}
+.poke-ul ul {
+    text-align: left;
+}
+.poke-moves ul {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.poke-evolutions h3 {
+    text-align: center;
+}
+.poke-evolve {
+    flex: 1;
+    text-align: center;
 }
 
 .type {
     display: inline;
+    padding: 2px 10px 2px 10px;
+    margin: 0px 5px 0px 5px;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
 }
 .bug {
-    color: #88960E;
+    background-color: #88960E;
 }
 .dark {
-    color: #3C2D23;
+    background-color: #3C2D23;
 }
 .dragon {
-    color: #4E3BA4;
+    background-color: #4E3BA4;
 }
 .electric {
-    color: #E79302;
+    background-color: #E79302;
 }
 .fairy {
-    color: #E08EE0;
+    background-color: #E08EE0;
 }
 .fighting {
-    color: #602311;
+    background-color: #602311;
 }
 .fire {
-    color: #C72100;
+    background-color: #C72100;
 }
 .flying {
-    color: #5D73D4;
+    background-color: #5D73D4;
 }
 .ghost {
-    color: #444491;
+    background-color: #444491;
 }
 .grass {
-    color: #409F09;
+    background-color: #409F09;
 }
 .ground {
-    color: #AD8C32;
+    background-color: #AD8C32;
 }
 .ice {
-    color: #6DD3F5;
+    background-color: #6DD3F5;
 }
 .normal {
-    color: #AAA291;
+    background-color: #AAA291;
 }
 .poison {
-    color: #6B246E;
+    background-color: #6B246E;
 }
 .psychic {
-    color: #DC3165;
+    background-color: #DC3165;
 }
 .rock {
-    color: #9E863D;
+    background-color: #9E863D;
 }
 .steel {
-    color: #8E8E9F;
+    background-color: #8E8E9F;
 }
 .water {
-    color: #0B66C1;
+    background-color: #0B66C1;
 }
