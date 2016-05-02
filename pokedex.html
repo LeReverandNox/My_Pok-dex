@@ -1,0 +1,16 @@
+<div class="poke-body" ng-controller='pokedexCtrl as pkCtrl'>
+
+    <div class='poke-loader' ng-show='isLoading'>LOADER</div>
+
+    <div class='poke-content'>
+        <div class="poke-searchnlist">
+            <form class='poke-search'>
+                <input type=text placeholder="Le nom ou l'ID d'un Pokémon" autofocus ng-model='pokeSearch' ng-change='pkCtrl.searchInList()'/>
+            </form>
+
+            <pokelist></pokelist>
+        </div>
+
+        <pokeprofil></pokeprofil>
+    </div>
+</div>
