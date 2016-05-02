@@ -169,4 +169,15 @@
         };
     });
 
+    app.filter('leftpad', function () {
+        return function (number, length) {
+
+            number = '' + number;
+            while (number.length < length) {
+                number = '0' + number;
+            }
+            return number;
+        };
+    });
+
 }());
