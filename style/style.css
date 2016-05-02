@@ -132,6 +132,18 @@ pokeprofil {
     text-align: center;
 }
 
+.fav {
+    width: 25px;
+    height: 25px;
+    background-color: green;
+}
+.unfav {
+    background-color: red;
+}
+
+.team-body {
+    display: flex;
+}
 .type {
     display: inline;
     padding: 2px 10px 2px 10px;
