@@ -6,6 +6,7 @@
     'use strict';
 
     var app = angular.module('pokedex', []);
+    var app = angular.module('pokedex', ['ngRoute']);
 
     app.controller('pokedexCtrl', function ($location, $q, $scope, $http) {
 
