@@ -1,0 +1,69 @@
+<div class="team-body">
+    <div class="poke-searchnlist">
+    <p>My Team</p>
+    <ul>
+        <li ng-repeat="pokemon in team | orderBy:'datas.profil.id'" ng-click='tCtrl.displayOne(pokemon.name)'>#{{pokemon.datas.profil.id | leftpad:3}} - {{pokemon.name | capitalize}}</li>
+    </ul>
+    </div>
+
+    <div ng-show='pokeShow' class='pokeprofil'>
+    <div class="poke-header">
+        <h2><span class="poke-id">#{{pokemon.datas.profil.id | leftpad:3}}</span> <a href="#/pokedex/{{pokemon.datas.profil.name}}"><span class="poke-name">{{pokemon.datas.profil.name | capitalize}}</span></a></h2>
+    </div>
+        <div class="poke-sprite">
+            <img src="{{pokemon.datas.profil.sprites['front_default']}}">
+        </div>
+
+        <div class='fav' ng-class='{"unfav" : tCtrl.isPkmnFavorite(pokemon.datas.profil.name)}' ng-click='tCtrl.SupOrAddToTeam(pokemon.datas.profil.name)'></div>
+
+        <div class="poke-infos">
+            <p>Description : {{pokemon.datas.desc}}</p>
+            <p>Heigth : {{pokemon.datas.profil.height / 10}} m</p>
+            <p>Weight : {{pokemon.datas.profil.weight / 10}} kg
+        </div>
+
+        <div class="poke-types">
+        Type :
+            <div class='type' ng-repeat='type in pokemon.datas.profil.types' ng-class='type.type.name'>{{type.type.name}}</div>
+        </div>
+
+        <div class="poke-ul-flex">
+            <div class="poke-ul poke-stats">
+                <p>Statistics</p>
+                <ul>
+                    <li ng-repeat="stat in pokemon.datas.profil.stats | orderBy:'id':false"><span class="poke-stat">{{stat.stat.name | capitalize}}</span> : {{stat.base_stat}}</li>
+                </ul>
+            </div>
+
+            <div class="poke-ul poke-moves">
+                <p>Moves</p>
+                <ul>
+                    <li ng-repeat='move in pokemon.datas.profil.moves'>{{move.move.name}}</li>
+                </ul>
+            </div>
+
+            <div class="poke-ul poke-abilities">
+                <p>Abilities</p>
+                <ul>
+                    <li ng-repeat='ability in pokemon.datas.profil.abilities'>{{ability.ability.name}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="poke-evolutions">
+        <h3>Evolutions</h3>
+            <div class="poke-evo-flex">
+                <div class='poke-evolve' ng-show='pokemon.datas.previous'>
+                    <p>Previous</p>
+                    <p><a href="#/pokedex/{{pokemon.datas.previous.name}}">#{{pokemon.datas.previous.id | leftpad:3}} {{pokemon.datas.previous.name | capitalize}}</a></p>
+                    <p><img src="{{pokemon.datas.previous.sprite}}"></p>
+                </div>
+                <div class='poke-evolve' ng-show='pokemon.datas.next'>
+                    <p>Next</p>
+                    <p><a href="#/pokedex/{{pokemon.datas.next.name}}">#{{pokemon.datas.next.id | leftpad:3}} {{pokemon.datas.next.name | capitalize}}</a></p>
+                    <p><img src="{{pokemon.datas.next.sprite}}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
