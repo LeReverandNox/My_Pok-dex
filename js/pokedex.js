@@ -94,6 +94,29 @@
         return teamService;
     });
 
+    app.controller('teamCtrl', function ($scope, teamService) {
+        var self = this;
+        $scope.team = teamService.loadTeam();
+
+        this.displayOne = function (name) {
+            $scope.pokemon = teamService.isPkmnFavorite(name);
+            $scope.pokeShow = true;
+        };
+
+        this.isPkmnFavorite = function (name) {
+            if (teamService.isPkmnFavorite(name)) {
+                return true;
+            }
+        };
+        this.SupOrAddToTeam = function (name) {
+            teamService.SupOrAddToTeam(name, $scope.poke);
+            $scope.pokemon = {};
+            $scope.pokeShow = false;
+        };
+    });
+
+    app.controller('pokedexCtrl', function ($location, $q, $scope, $http, $routeParams, teamService) {
+
         var self = this;
         this.api = 'http://localhost:8000/api/v2/';
         // this.api = 'http://pokeapi.co/api/v2/';
