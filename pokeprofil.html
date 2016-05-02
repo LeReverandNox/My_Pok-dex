@@ -6,6 +6,8 @@
         <img src="{{poke.profil.sprites['front_default']}}">
     </div>
 
+    <div class='fav' ng-class='{"unfav" : pkCtrl.isPkmnFavorite(poke.profil.name)}' ng-click='pkCtrl.SupOrAddToTeam(poke.profil.name)'></div>
+
     <div class="poke-infos">
         <p>Description : {{poke.desc}}</p>
         <p>Heigth : {{poke.profil.height / 10}} m</p>
