@@ -67,7 +67,6 @@
         };
 
         teamService.supOrAddToTeam = function (name, poke) {
-            // console.log(poke);
             var pkmnToDelete = this.isPkmnFavorite(name);
             if (pkmnToDelete) {
                 var pos = this.team.indexOf(pkmnToDelete);
@@ -179,7 +178,6 @@
                 method: 'GET',
                 url: self.api + 'pokemon/' + pokeName
             }).then(function success(response) {
-                // console.log(response.data);
                 $scope.poke.profil = response.data;
                 self.getSpecie(response.data.species.url);
             }, function error(response) {
@@ -195,7 +193,6 @@
                 method: 'GET',
                 url: specieURL
             }).then(function success(response) {
-                // console.log(response.data);
                 $scope.poke.desc = response.data.flavor_text_entries[1].flavor_text;
                 self.getEvolutionChain(response.data.evolution_chain.url);
             });
