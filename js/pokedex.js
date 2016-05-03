@@ -11,7 +11,8 @@
         $location.path = function (path, reload) {
             if (reload === false) {
                 var lastRoute = $route.current;
-                var un = $rootScope.$on('$locationChangeSuccess', function () {
+                var un;
+                un = $rootScope.$on('$locationChangeSuccess', function () {
                     $route.current = lastRoute;
                     un();
                 });
