@@ -45,15 +45,15 @@
     <div class="poke-evolutions">
     <h3>Evolutions</h3>
         <div class="poke-evo-flex">
-            <div class='poke-evolve' ng-show='poke.previous'>
+            <div class='poke-evolve' ng-show='poke.previouses' ng-repeat='previous in poke.previouses'>
                 <p>Previous</p>
-                <p ng-click='pkCtrl.showProfil(poke.previous.name)'>#{{poke.previous.id | leftpad:3}} {{poke.previous.name | capitalize}}</p>
-                <p><img src="{{poke.previous.sprite}}"></p>
+                <p ng-click='pkCtrl.showProfil(previous.name)'>#{{previous.id | leftpad:3}} {{previous.name | capitalize}}</p>
+                <p><img src="{{previous.sprite}}"></p>
             </div>
-            <div class='poke-evolve' ng-show='poke.next'>
+            <div class='poke-evolve' ng-show='poke.nexts' ng-repeat='next in poke.nexts'>
                 <p>Next</p>
-                <p ng-click='pkCtrl.showProfil(poke.next.name)'>#{{poke.next.id | leftpad:3}} {{poke.next.name | capitalize}}</p>
-                <p><img src="{{poke.next.sprite}}"></p>
+                <p ng-click='pkCtrl.showProfil(next.name)'>#{{next.id | leftpad:3}} {{next.name | capitalize}}</p>
+                <p><img src="{{next.sprite}}"></p>
             </div>
         </div>
     </div>
