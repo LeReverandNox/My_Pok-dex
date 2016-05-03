@@ -1,4 +1,4 @@
-/*jslint browser this */
+/*jslint browser this for */
 /*global angular $ alert */
 
 (function () {
@@ -66,7 +66,8 @@
             }
         };
 
-        teamService.SupOrAddToTeam = function (name, poke) {
+        teamService.supOrAddToTeam = function (name, poke) {
+            // console.log(poke);
             var pkmnToDelete = this.isPkmnFavorite(name);
             if (pkmnToDelete) {
                 var pos = this.team.indexOf(pkmnToDelete);
@@ -108,8 +109,8 @@
                 return true;
             }
         };
-        this.SupOrAddToTeam = function (name) {
-            teamService.SupOrAddToTeam(name, $scope.poke);
+        this.supOrAddToTeam = function (name) {
+            teamService.supOrAddToTeam(name, $scope.poke);
             $scope.pokemon = {};
             $scope.pokeShow = false;
         };
@@ -263,8 +264,8 @@
                 return true;
             }
         };
-        this.SupOrAddToTeam = function (name) {
-            teamService.SupOrAddToTeam(name, $scope.poke);
+        this.supOrAddToTeam = function (name) {
+            teamService.supOrAddToTeam(name, $scope.poke);
         };
 
         if ($routeParams.name) {
