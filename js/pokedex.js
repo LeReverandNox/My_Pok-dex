@@ -193,7 +193,11 @@
                 method: 'GET',
                 url: specieURL
             }).then(function success(response) {
-                $scope.poke.desc = response.data.flavor_text_entries[1].flavor_text;
+                var texts = response.data.flavor_text_entries.filter(function (text) {
+                    return text.language.name === 'en';
+                });
+
+                $scope.poke.desc = texts[0].flavor_text;
                 self.getEvolutionChain(response.data.evolution_chain.url);
             });
         };
