@@ -217,17 +217,19 @@
                 $.each(evolutions, function (index, evolution) {
                     // Bout de code parfaitement inutile, mais sinon JSLint aime pas la variabie unused xD
                     index += index - index;
-                    promises.push($http({
-                        method: 'GET',
-                        url: evolution.url
-                    }).then(function success1(response) {
-                        evolution.sprite = response.data.sprites.front_default;
-                    }));
+                    evolution.forEach(function (ev) {
+                        promises.push($http({
+                            method: 'GET',
+                            url: ev.url
+                        }).then(function success1(response) {
+                            ev.sprite = response.data.sprites.front_default;
+                        }));
+                    });
                 });
 
                 $q.all(promises).then(function success2() {
-                    $scope.poke.previous = evolutions.previous;
-                    $scope.poke.next = evolutions.next;
+                    $scope.poke.previouses = evolutions.previouses;
+                    $scope.poke.nexts = evolutions.nexts;
                     $scope.isLoading = false;
                     $scope.poke.show = true;
                 });
@@ -237,26 +239,35 @@
         this.findEvolutions = function (chain, allEvolutions) {
             chain.species.url = chain.species.url.replace('-species', '');
             chain.species.id = chain.species.url.match(/\/([0-9]+)\//)[1];
-
-            allEvolutions.push(chain.species);
+            allEvolutions.push([chain.species]);
 
             if (chain.hasOwnProperty('evolves_to')) {
-                if (chain.evolves_to.length > 0) {
+                if (chain.evolves_to.length === 1) {
                     self.findEvolutions(chain.evolves_to[0], allEvolutions);
+                } else if (chain.evolves_to.length > 1) {
+                    var multi = [];
+                    chain.evolves_to.forEach(function (evolve) {
+                        evolve.species.url = evolve.species.url.replace('-species', '');
+                        evolve.species.id = evolve.species.url.match(/\/([0-9]+)\//)[1];
+                        multi.push(evolve.species);
+                    });
+                    allEvolutions.push(multi);
                 }
             }
         };
 
         this.findPrevNext = function (name, allEvolutions, evolutions) {
             allEvolutions.forEach(function (evolution, index) {
-                if (evolution.name === name) {
-                    if (allEvolutions[index - 1] !== undefined) {
-                        evolutions.previous = allEvolutions[index - 1];
+                evolution.forEach(function (pokemon) {
+                    if (pokemon.name === name) {
+                        if (allEvolutions[index - 1] !== undefined) {
+                            evolutions.previouses = allEvolutions[index - 1];
+                        }
+                        if (allEvolutions[index + 1] !== undefined) {
+                            evolutions.nexts = allEvolutions[index + 1];
+                        }
                     }
-                    if (allEvolutions[index + 1] !== undefined) {
-                        evolutions.next = allEvolutions[index + 1];
-                    }
-                }
+                });
             });
         };
 
