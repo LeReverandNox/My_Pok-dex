@@ -118,8 +118,8 @@
     app.controller('pokedexCtrl', function ($location, $q, $scope, $http, $routeParams, teamService) {
 
         var self = this;
-        this.api = 'http://localhost:8000/api/v2/';
-        // this.api = 'http://pokeapi.co/api/v2/';
+        // this.api = 'http://localhost:8000/api/v2/';
+        this.api = 'http://pokeapi.co/api/v2/';
 
         this.pokemons = [];
         $scope.poke = {};
