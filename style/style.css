@@ -91,6 +91,10 @@ pokeprofil {
     display: flex;
     justify-content: center;
 }
+
+.pokeprofil {
+    text-align: center;
+}
 .poke-searchnlist  {
     flex-basis: 30%;
 }
