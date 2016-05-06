@@ -211,7 +211,7 @@
                 var evolutions = {};
 
                 self.findEvolutions(response.data.chain, allEvolutions);
-                self.findPrevNext($scope.poke.profil.name, allEvolutions, evolutions);
+                self.findPrevNext($scope.poke.profil.id, allEvolutions, evolutions);
 
                 var promises = [];
                 $.each(evolutions, function (index, evolution) {
@@ -256,10 +256,10 @@
             }
         };
 
-        this.findPrevNext = function (name, allEvolutions, evolutions) {
+        this.findPrevNext = function (id, allEvolutions, evolutions) {
             allEvolutions.forEach(function (evolution, index) {
                 evolution.forEach(function (pokemon) {
-                    if (pokemon.name === name) {
+                    if (pokemon.id === id.toString()) {
                         if (allEvolutions[index - 1] !== undefined) {
                             evolutions.previouses = allEvolutions[index - 1];
                         }
