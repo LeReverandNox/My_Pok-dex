@@ -133,12 +133,13 @@ pokeprofil {
 }
 
 .fav {
-    width: 25px;
-    height: 25px;
-    background-color: green;
+    width: 210px;
+    height: 50px;
+    margin: 0 auto;
+    background-image: url('images/add.png');
 }
 .unfav {
-    background-color: red;
+    background-image: url('images/remove.png');
 }
 
 .team-body {
