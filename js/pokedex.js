@@ -24,12 +24,12 @@
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/pokedex/:name?', {
-                templateUrl: 'pokedex.html',
+                templateUrl: 'templates/pokedex.html',
                 controller: 'pokedexCtrl',
                 controllerAs: 'pkCtrl'
             })
             .when('/team', {
-                templateUrl: 'team.html',
+                templateUrl: 'templates/team.html',
                 controller: 'teamCtrl',
                 controllerAs: 'tCtrl'
             })
@@ -288,14 +288,14 @@
     app.directive('pokelist', function () {
         return {
             restrict: 'E',
-            templateUrl: 'pokelist.html'
+            templateUrl: 'templates/pokelist.html'
         };
     });
 
     app.directive('pokeprofil', function () {
         return {
             retrict: 'E',
-            templateUrl: 'pokeprofil.html'
+            templateUrl: 'templates/pokeprofil.html'
         };
     });
 
