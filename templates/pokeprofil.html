@@ -23,7 +23,7 @@
         <div class="poke-ul poke-stats">
             <p>Statistics</p>
             <ul>
-                <li ng-repeat="stat in poke.profil.stats | orderBy:'id':false"><span class="poke-stat">{{stat.stat.name | capitalize}}</span> : {{stat.base_stat}}</li>
+                <li ng-repeat="stat in poke.profil.stats | orderBy:'id':true"><span class="poke-stat">{{stat.stat.name | capitalize}}</span> : {{stat.base_stat}}</li>
             </ul>
         </div>
 
